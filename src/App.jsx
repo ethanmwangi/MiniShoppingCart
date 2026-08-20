@@ -19,16 +19,17 @@ const products = [
 ];
 function App() {
   const [cartCount, setCartCount] = useState(0);
-   function handleClick() {
-      setCartCount(cartCount + 1);
-    }
+  function handleClick(product) {
+    setCartCount(cartCount + 1);
+    console.log(product);
+  }
   const productCards = products.map((product) => {
     return (
       <ProductCard
         key={product.id}
         name={product.name}
         price={product.price}
-        onAddToCart={handleClick}
+        onAddToCart={() => handleClick(product)}  //When the button gets clicked, run handleClick and give it THIS produc//
       />
     );
   });
