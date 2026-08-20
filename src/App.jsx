@@ -1,5 +1,6 @@
 import ProductCard from "./ProductCard";
 import { useState } from "react";
+const cart = [];
 const products = [
   {
     id: 1,
@@ -18,9 +19,9 @@ const products = [
   }
 ];
 function App() {
-  const [cartCount, setCartCount] = useState(0);
+  const [cart, setCart] = useState([]);
   function handleClick(product) {
-    setCartCount(cartCount + 1);
+    setCart([...cart, product]);
     console.log(product);
   }
   const productCards = products.map((product) => {
@@ -36,7 +37,12 @@ function App() {
   return (
     <div>
       {productCards}
-      <p>Cart:{cartCount}</p>
+      <p>Cart:{cart.length}</p> // to tell us how many items aree in the new array//
+      {cart.map((item) => {
+       return (
+        <p key={item.id}>{item.name} - ${item.price}</p>
+        );
+      })};
     </div>
   );
 }
