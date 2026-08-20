@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import { useState } from "react";
 const products = [
   {
     id: 1,
@@ -17,19 +18,26 @@ const products = [
   }
 ];
 function App() {
+  const [cartCount, setCartCount] = useState(0);
+   function handleClick() {
+      setCartCount(cartCount + 1);
+    }
   const productCards = products.map((product) => {
     return (
       <ProductCard
         key={product.id}
         name={product.name}
         price={product.price}
+        onAddToCart={handleClick}
       />
     );
   });
-
   return (
     <div>
       {productCards}
+      <p>Cart:{cartCount}</p>
     </div>
   );
 }
+
+export default App;
