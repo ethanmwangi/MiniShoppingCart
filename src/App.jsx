@@ -16,13 +16,20 @@ const products = [
     price: 1000
   }
 ];
-
 function App() {
+  const productCards = products.map((product) => {
+    return (
+      <ProductCard
+        key={product.id}
+        name={product.name}
+        price={product.price}
+      />
+    );
+  });
+
   return (
     <div>
-      <h1>Mini Store</h1>
+      {productCards}
     </div>
   );
 }
-
-export default App;
